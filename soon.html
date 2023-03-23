@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      
+      <meta name="keywords" content="ROBLOX Script, Greenville ROBLOX, Better ROBLOX">
+      <meta name="author" content="UnnamedHub">
+      <meta name="description" content="UnnamedHub, Exploiting from another angle.">
+      <title>UnnamedHub</title>  
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <!-- <link rel="stylesheet" type="text/css" href="/style.css" /> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <style>
+    .content {
+  width: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+* {
+  box-sizing: border-box;
+}
+      </style>
+    </head>
+	<body class="w3-black">
+
+<div id="await" class="w3-hide">
+
+<div style="padding-top:200px;"></div>
+<p id="Timer" class="w3-xxxlarge w3-center">XXd XXh XXm XXs</p>
+<div class="w3-center w3-small">
+</div>
+
+<div style="padding-top:100px;"></div>
+<div class="w3-center">
+    <a class="w3-btn w3-text-blue w3-xlarge" href="https://unnamedhub.cf/discord">Join Us</a>
+</div>
+</div>
+
+<div id="wait" class="w3-center">
+    <div style="padding-top:250px;"></div>
+    <a id="clickme" class="w3-xxxlarge w3-button" onclick="clicked_event()">Click Me.</a>
+</div>
+
+<script>
+    var countDownDate = 1680348600000
+    var clicked = false
+    var waitingaudio = null
+    
+    function HandleMusic() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Normal.wav"
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if(days == 1) {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Day1.mp3"}
+        if(days == 2) {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Day2.wav"}
+        if(days == 3) {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Day3.wav"}
+        if(days == 4) {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Day4.mp3"}
+        if(days == 6) {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Day6.mp3"}
+        if(days == 0 && hours == 10) {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Hour10.mp3"}
+        if(days == 0 && hours == 5)  {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Hour5.mp3"}
+        if(days == 0 && hours == 0 && minutes == 1 && seconds == 21)  {link = "https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/1min20.ogg"}
+        if(waitingaudio != null) {
+            if(waitingaudio.src == link) { return }
+            waitingaudio.pause();
+            waitingaudio.currentTime = 0;
+            waitingaudio = null;
+        }
+        waitingaudio = new Audio(link);
+        waitingaudio.id = "Waiting_Ost";
+        waitingaudio.play();
+        waitingaudio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+    }
+
+    function clicked_event() {
+        if(clicked == true) { return }
+        clicked = true
+        var element = document.getElementById("await")
+        console.log(element)
+        element.classList.add('w3-show');
+        var element2 = document.getElementById("wait")
+        element2.classList.add('w3-hide');
+        HandleMusic()
+    }
+
+    // Update the count down every 1 second
+    var audioplay = false
+
+    var clickaudio = new Audio("https://github.com/Dumb-Utility/unnamedhub.cf/raw/main/sounds/Click.wav");
+
+    function IntervalFunc() {
+      // Get today's date and time
+      var now = new Date().getTime();
+    
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+    
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("Timer").innerHTML = days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s ";
+
+      if(clicked == false) { return }
+      HandleMusic()
+      clickaudio.currentTime = 0
+      clickaudio.play();
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("Timer").innerHTML = "Welcome";
+      }
+    }
+    IntervalFunc()
+    var x = setInterval(IntervalFunc, 1000);
+    </script>
+	</body>
+</html>
